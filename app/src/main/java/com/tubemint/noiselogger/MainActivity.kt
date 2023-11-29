@@ -10,30 +10,39 @@ import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private var audioRecord: AudioRecord? = null
     private var isRecording = false
     private val RECORD_AUDIO_PERMISSION_REQUEST = 200
-    private lateinit var ambientNoiseTextView: TextView
     private lateinit var logTextView: TextView
     private lateinit var locationTextView: TextView
+    private lateinit var dateTextView: TextView
+    private lateinit var timeTextView: TextView
+    private lateinit var temperatureTextView: TextView
     private var locationManager: LocationManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ambientNoiseTextView = findViewById(R.id.logTextView)
+
         logTextView = findViewById(R.id.logTextView)
         locationTextView = findViewById(R.id.locationTextView)
+        dateTextView = findViewById(R.id.dateTextView)
+        timeTextView = findViewById(R.id.timeTextView)
+        temperatureTextView = findViewById(R.id.temperatureTextView)
 
         val recordButton: Button = findViewById(R.id.recordButton)
         recordButton.setOnClickListener {
@@ -65,9 +74,43 @@ class MainActivity : AppCompatActivity() {
         } else {
             requestLocationUpdates()
         }
+
+        // Update date and time every second
+        val handler = Handler(Looper.getMainLooper())
+        handler.post(object : Runnable {
+            override fun run() {
+                updateDateTime()
+                handler.postDelayed(this, 1000)
+            }
+        })
+    }
+
+    private fun updateDateTime() {
+        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        val currentTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+
+        dateTextView.text = "Date: $currentDate"
+        timeTextView.text = "Time: $currentTime"
     }
 
     private fun requestLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
         locationManager?.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,
             0L,
@@ -111,6 +154,9 @@ class MainActivity : AppCompatActivity() {
         // ... (rest of the recording logic)
         logTextView.text = "Recording started"
         Log.d("MainActivity", "Recording started")
+
+        // Placeholder for temperature (you need to implement temperature retrieval logic)
+        temperatureTextView.text = "Temperature: 25°C"
     }
 
     private fun stopRecording() {
@@ -120,6 +166,7 @@ class MainActivity : AppCompatActivity() {
         audioRecord = null
         logTextView.text = "Recording stopped"
         Log.d("MainActivity", "Recording stopped")
+        temperatureTextView.text = ""  // Clear the temperature text when recording stops
     }
 
     override fun onRequestPermissionsResult(
@@ -127,6 +174,7 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             RECORD_AUDIO_PERMISSION_REQUEST -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -141,7 +189,7 @@ class MainActivity : AppCompatActivity() {
                 // Request for location updates permission
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     requestLocationUpdates()
-                    locationTextView.text = "Location "
+                    locationTextView.text = "Location"
                 } else {
                     locationTextView.text = "Location permission denied"
                 }

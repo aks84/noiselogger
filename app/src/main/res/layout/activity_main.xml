@@ -3,49 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">.
+    tools:context=".MainActivity">
 
-
-    <TextView
-    android:id="@+id/nlDateTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/dateTextView"
-    android:layout_marginTop="16dp"
-    android:text="Date"
-    android:textSize="18sp"
-    android:textColor="#32BF0B" />
-
-    <TextView
-    android:id="@+id/nlTimeTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/timeTextView"
-    android:layout_marginTop="16dp"
-    android:text="Time"
-    android:textSize="18sp"
-    android:textColor="#32BF0B" />
-
-
-    <TextView
-    android:id="@+id/locationTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/logTextView"
-    android:layout_marginTop="16dp"
-    android:text=""
-    android:textSize="18sp"
-    android:textColor="#32BF0B" />
-
-    <TextView
-    android:id="@+id/tempratureTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/temprTextView"
-    android:layout_marginTop="16dp"
-    android:text="Temprature"
-    android:textSize="18sp"
-    android:textColor="#32BF0B" />
+    <Button
+        android:id="@+id/recordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Record" />
 
     <TextView
         android:id="@+id/logTextView"
@@ -55,15 +20,46 @@
         android:layout_marginTop="16dp"
         android:text=""
         android:textSize="18sp"
-        android:textColor="#CDDC39" />
+        android:textColor="#FFEB3B" />
 
-    <Button
-        android:id="@+id/recordButton"
+    <TextView
+        android:id="@+id/locationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Record" />
+        android:layout_below="@id/logTextView"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="#FFC107" />
 
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationTextView"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="#8BC34A" />
 
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dateTextView"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="#4CAF50" />
+
+    <TextView
+        android:id="@+id/temperatureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeTextView"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="#03A9F4" />
 
 </RelativeLayout>
