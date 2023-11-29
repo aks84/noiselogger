@@ -6,55 +6,6 @@
     tools:context=".MainActivity">
 
 
-        <ImageView
-        android:src="@drawable/location"
-        android:layout_width="200dp"
-        android:layout_height="200dp"/>
-
-    <TextView
-        android:id="@+id/text_location"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
-        android:text="Current Location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/button_location"
-        android:text="Get Location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-        <!-- location ends here -->
-
-    <Button
-        android:id="@+id/recordButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Record" />
-
-    <TextView
-        android:id="@+id/logTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/recordButton"
-        android:layout_marginTop="16dp"
-        android:text=""
-        android:textSize="18sp"
-        android:textColor="#FFEB3B" />
-
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/logTextView"
-        android:layout_marginTop="16dp"
-        android:text=""
-        android:textSize="18sp"
-        android:textColor="#FFC107" />
-
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
@@ -84,5 +35,32 @@
         android:text=""
         android:textSize="18sp"
         android:textColor="#03A9F4" />
+
+    <Button
+        android:id="@+id/recordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Record" />
+
+    <TextView
+        android:id="@+id/logTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recordButton"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="#FFEB3B" />
+
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logTextView"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textSize="18sp"
+        android:textColor="#FFC107" />
 
 </RelativeLayout>
