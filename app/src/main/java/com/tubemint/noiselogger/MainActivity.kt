@@ -119,10 +119,16 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+
+
+
     private val locationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
+            Log.d("Location", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
             // Update locationTextView with current location information
-            locationTextView.text = "Location: Lat ${location.latitude}, Long ${location.longitude}"
+            val locationLat = getLatitude()
+            val locationLong = getLongitude()
+            locationTextView.text = "Location: Lat ${locationLat}, Long ${locationLong}"
         }
 
         override fun onProviderDisabled(provider: String) {}
@@ -150,14 +156,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
+
+
+
+
     private fun startRecording() {
         // ... (rest of the recording logic)
         logTextView.text = "Recording started"
         Log.d("MainActivity", "Recording started")
 
-        // Placeholder for temperature (you need to implement temperature retrieval logic)
-        temperatureTextView.text = "Temperature: 25°C"
+    val temperature = getTemperature()
+        temperatureTextView.text = "Temperature: $temperature°C"
     }
+
+
+        // Example method to get temperature (replace this with your actual logic)
+    private fun getTemperature(): Int {
+        // Replace this with your logic to fetch real-time temperature data
+        // For now, let's return a dummy value (e.g., 27°C)
+        return 27
+    }
+
 
     private fun stopRecording() {
         isRecording = false
