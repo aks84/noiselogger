@@ -126,8 +126,8 @@ class MainActivity : AppCompatActivity() {
         override fun onLocationChanged(location: Location) {
             Log.d("Location", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
             // Update locationTextView with current location information
-            val locationLat = getLatitude()
-            val locationLong = getLongitude()
+            val locationLat: Double = location.latitude
+            val locationLong: Double = location.longitude
             locationTextView.text = "Location: Lat ${locationLat}, Long ${locationLong}"
         }
 
